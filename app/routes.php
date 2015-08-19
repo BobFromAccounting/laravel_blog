@@ -25,3 +25,20 @@ Route::get('/portfolio', function()
 {
     return 'This is my Portfolio!';
 });
+
+Route::get('/rollad6/{guessNum}', function($guessNum)
+{   
+    $randNum = mt_rand(1, 6);
+
+    if ($guessNum == $randNum) {
+        $response = "Success!";
+    } else {
+        $response = "Sorry, not sorry. Pray to the dice gods.";
+    }
+    $data = array(
+        'guessNum' => $guessNum,
+        'randNum'  => $randNum,
+        'response' => $response
+    );
+    return View::make('roll-dice')->with($data);
+});
