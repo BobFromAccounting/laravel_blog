@@ -11,34 +11,25 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@showhome');
+
+Route::get('/resume', 'HomeController@showresume');
+
+Route::get('/portfolio', 'HomeController@showportfolio');
+
+Route::get('/rollad6/{guessNum}', 'HomeController@showdice');
+
+Route::resource('/posts', 'PostsController');
+
+Route::get('orm-test', function()
 {
-	return View::make('hello');
-});
+    $post1 = new Post();
+    $post1->title = 'Eloquent is awesome!';
+    $post1->body  = 'It is super easy to create a new post.';
+    $post1->save();
 
-Route::get('/resume', function()
-{
-    return 'This is my resume!';
-});
-
-Route::get('/portfolio', function()
-{
-    return 'This is my Portfolio!';
-});
-
-Route::get('/rollad6/{guessNum}', function($guessNum)
-{   
-    $randNum = mt_rand(1, 6);
-
-    if ($guessNum == $randNum) {
-        $response = "Success!";
-    } else {
-        $response = "Sorry, not sorry. Pray to the dice gods.";
-    }
-    $data = array(
-        'guessNum' => $guessNum,
-        'randNum'  => $randNum,
-        'response' => $response
-    );
-    return View::make('roll-dice')->with($data);
+    $post2 = new Post();
+    $post2->title = 'Post number two';
+    $post2->body  = 'The body for post number two.';
+    $post2->save();
 });
