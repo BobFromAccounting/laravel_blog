@@ -4,7 +4,7 @@
 
 1. Clone this repo into your sites folder.
 
-2. Run ansible-playbook ansible/create-vagrant-site.yml
+2. Run `ansible-playbook ansible/create-vagrant-site.yml`
 
 3. Create a database w/ ansible commands
 
