@@ -17,10 +17,7 @@
     @foreach ($posts as $key => $post)
         <div class="container">
             <h2>{{{ $post->title }}}</h1>
-            <p>
-                {{{ $post->body }}}
-            </p>
-            <a class="btn btn-primary" style="float: right;" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
+            <a class="btn btn-primary" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
         </div>
     @endforeach
     </div>

@@ -32,25 +32,10 @@ class PostsController extends BaseController {
 	 */
 	public function store()
 	{
-		// create the validator
-	    $validator = Validator::make(Input::all(), Post::$rules);
-
-	    // attempt validation
-	    if ($validator->fails()) {
-	        // validation failed, redirect to the post create page with validation errors and old inputs
-	        return Redirect::back()->withInput()->withErrors($validator);
-	    } else {
 			$post = new Post();
-
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			
-			$post->save();
-
-			return Redirect::action('PostsController@index');
 	        // validation succeeded, create and save the post
-	    }
 
+			return $this->validateAndSave($post);
 	}
 
 
@@ -90,24 +75,9 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		// create the validator
-	    $validator = Validator::make(Input::all(), Post::$rules);
+		$post = Post::find($id);
 
-	    // attempt validation
-	    if ($validator->fails()) {
-	        // validation failed, redirect to the post create page with validation errors and old inputs
-	        return Redirect::back()->withInput()->withErrors($validator);
-	    } else {
-
-			$post = Post::find($id);
-
-			$post->title = Input::get('title');
-			$post->body  = Input::get('body');
-			
-			$post->save();
-
-			return Redirect::action('PostsController@show', array($id));
-		}
+		return $this->validateAndSave($post);
 	}
 
 
@@ -125,5 +95,24 @@ class PostsController extends BaseController {
 		return Redirect::action('PostsController@index');
 	}
 
+	public function validateAndSave($post)
+	{
+		// create the validator
+	    $validator = Validator::make(Input::all(), Post::$rules);
+
+	    // attempt validation
+	    if ($validator->fails()) {
+	        // validation failed, redirect to the post create page with validation errors and old inputs
+	        return Redirect::back()->withInput()->withErrors($validator);
+	    } else {
+
+			$post->title = Input::get('title');
+			$post->body  = Input::get('body');
+
+			$post->save();
+
+			return Redirect::action('PostsController@show', array($post->id));
+		}
+	}
 
 }

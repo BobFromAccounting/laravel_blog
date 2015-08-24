@@ -4,18 +4,9 @@
         <meta name="description" content="resume">
         <title>Resume</title>
         <style type="text/css">
-        body {
-            background: url('/img/stormyroad.jpg') top left no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            height: 100%;
-            width: 100%;
-        }
-
         .jumbotronSpecial {
             color: none !important;
             background-color: none !important;
-            margin-top: 60px; 
             margin-bottom: 15px;
             font-size: 2.5rem;
             font-weight: 200;
@@ -26,7 +17,7 @@
 @section('content')
     <!-- Main Jumbotron for a primary marketing message or call to action -->
     <div class="row">
-        <div class="col-md-2 addpadd">
+        <div class="col-md-2">
             <img src="/img/tarek4.jpg" class="img-circle" alt="Main Portrait"></img>
         </div>
         <div class="col-md-10 pull-right">
