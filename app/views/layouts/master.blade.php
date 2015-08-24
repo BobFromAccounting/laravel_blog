@@ -21,7 +21,7 @@
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{{ action('HomeController@showhome') }}}">Tarek S Hafez</a>
+                        <a class="navbar-brand" href="{{{ action('HomeController@showhome') }}}">T S Hafez</a>
                         <ul class="nav navbar-nav">
                             <li><a href="{{{ action('HomeController@showresume') }}}">Resume</a></li>
                             <li><a href="{{{ action('HomeController@showportfolio') }}}">Portfolio</a></li>
@@ -33,6 +33,13 @@
             </div>
         </div>
         <div class="container" style="padding-top: 60px;">
+            @if (Session::has('successMessage'))
+                <div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
+            @endif
+            @if (Session::has('errorMessage'))
+                <div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
+            @endif
+
             @if ($errors->has())
                 <div class="alert alert-danger" role="alert">
                     @foreach ($errors->all() as $error)
@@ -49,5 +56,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="/js/bootstrap.js"></script>
+        @yield('script')
     </body>
 </html>

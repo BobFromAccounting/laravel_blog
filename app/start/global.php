@@ -46,10 +46,16 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
+});
+
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    Log::error($exception);
 });
+
 
 /*
 |--------------------------------------------------------------------------

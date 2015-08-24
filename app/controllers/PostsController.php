@@ -92,6 +92,8 @@ class PostsController extends BaseController {
 		$post = Post::find($id);
 		$post->delete();
 
+		Session::flash('successMessage', 'Your post has been successfully deleted.');
+
 		return Redirect::action('PostsController@index');
 	}
 
@@ -102,6 +104,7 @@ class PostsController extends BaseController {
 
 	    // attempt validation
 	    if ($validator->fails()) {
+	    	Session::flash('errorMessage', 'Ohh no! Something went wrong...You should be seeing some errors down below...');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    } else {
@@ -110,6 +113,8 @@ class PostsController extends BaseController {
 			$post->body  = Input::get('body');
 
 			$post->save();
+
+			Session::flash('successMessage', 'Your post has been successfully saved.');
 
 			return Redirect::action('PostsController@show', array($post->id));
 		}

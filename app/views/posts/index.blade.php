@@ -10,14 +10,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="fancy-header">Tarek thought...</h1>
+        <h1 class="fancy-header">Tarek's thoughts...</h1>
         {{ $posts->links() }}
-        <p>Showing {{{ $posts->getPerPage() }}} of {{{ $posts->getTotal() }}} total records</p>
-        <a class="btn btn-success" style="float: right;" href="{{{ action('PostsController@create') }}}">Create New Post</a>
+        <a class="btn btn-primary" style="float: right;" href="{{{ action('PostsController@create') }}}">Create New Post</a>
     @foreach ($posts as $key => $post)
         <div class="container">
-            <h2>{{{ $post->title }}}</h1>
-            <a class="btn btn-primary" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
+            <h2>{{{ $post->title }}} <small style='font-size: .5em;'>{{{ $post->created_at->diffForHumans() }}}</small></h2>
+            
+            <a class="btn btn-default" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
         </div>
     @endforeach
     </div>

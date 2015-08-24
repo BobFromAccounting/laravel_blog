@@ -9,22 +9,18 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Create a Blog Post!</h3>
+                <h3 class="panel-title">Create a Blog Post.</h3>
             </div>
-            <div class="panel-body">
-                {{ Form::open(array('action' => 'PostsController@store', 'method' => 'POST')) }}
-                    <div class="form-group @if ($errors->has('title')) has-error @endif">
-                        <label for="title" >Blog Title</label>
-                        <input type="text" class="form-control" name="title" value="{{{ Input::old('title') }}}" id="title" autofocus>
-                    </div>
-                    <div class="form-group @if ($errors->has('title')) has-error @endif">
-                        <label for="body" >Blog Body</label>
-                        <textarea class="form-control" rows="15" name="body">{{{ Input::old('body') }}}</textarea>
-                    </div>
-                    <button class="btn btn-default" type="submit">Save Post</button>
-                    <a class="btn btn-danger" style="float: right;" href="{{{ action('PostsController@index') }}}">Cancel</a>
-                {{ Form::close() }}
-            </div>
+
+            {{ Form::open(array('action' => 'PostsController@store')) }}
+                <div class="panel-body">
+        
+                    @include('posts.create-edit')
+                    
+                    {{ Form::submit('Save Post', array('class' => 'btn btn-success', 'style' => 'float: right;'))}}
+                    <a class="btn btn-danger" href="{{{ action('PostsController@index') }}}">Cancel</a>
+                </div>
+            {{ Form::close() }}
         </div>
-    </div>    
+    </div>   
 @stop
