@@ -10,7 +10,7 @@
     <div class="container">
         <h2>{{{ $post->title }}}</h2>
         <h6>
-            {{{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}
+            {{{ $post->created_at->format('l, F jS Y @ h:i:s A') }}}
         </h6>
         <p>
             {{{ $post->body }}}

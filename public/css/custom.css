@@ -1,3 +1,10 @@
+@font-face{
+    font-family: 'mortalkombatmythologies';
+    src: url('/css/fonts/mortalkombatmythologies.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .addpadd  {
     padding-top: 100px;
     padding-left: 50px;
@@ -10,4 +17,9 @@
 }
 .coverpad {
 	padding-top: 70px;
+}
+
+.mortalfonttype {
+    font-family: 'mortalkombatmythologies', sans-serif;
+    
 }

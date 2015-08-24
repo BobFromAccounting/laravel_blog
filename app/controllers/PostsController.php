@@ -34,6 +34,9 @@ class PostsController extends BaseController {
 	{
 			$post = new Post();
 	        // validation succeeded, create and save the post
+			Log::info("Post created successfully.");
+
+			Log::info("Log Message", array('context' => Input::all()));
 
 			return $this->validateAndSave($post);
 	}
@@ -49,7 +52,12 @@ class PostsController extends BaseController {
 	{
 		$post = Post::find($id);
 
+		if (!$post) {
+			App::abort(404);
+		}
+
 		return View::make('posts.show')->with('post', $post);
+
 	}
 
 
@@ -62,6 +70,10 @@ class PostsController extends BaseController {
 	public function edit($id)
 	{
 		$post = Post::find($id);
+
+		if (!$post) {
+			App::abort(404);
+		}
 
 		return View::make('posts.edit')->with('post', $post);
 	}
@@ -77,6 +89,10 @@ class PostsController extends BaseController {
 	{
 		$post = Post::find($id);
 
+		if (!$post) {
+			App::abort(404);
+		}
+
 		return $this->validateAndSave($post);
 	}
 
@@ -89,7 +105,7 @@ class PostsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$post = Post::find($id);
+		$post = Post::findOrFail($id);		
 		$post->delete();
 
 		Session::flash('successMessage', 'Your post has been successfully deleted.');
@@ -105,6 +121,7 @@ class PostsController extends BaseController {
 	    // attempt validation
 	    if ($validator->fails()) {
 	    	Session::flash('errorMessage', 'Ohh no! Something went wrong...You should be seeing some errors down below...');
+	    	Log::info('Validator failed', Input::all());
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    } else {
