@@ -12,9 +12,9 @@
 
 5. Create your own .env.local.php file
 
-6. Run 'composer install'
+6. Run `composer install`
 
 ## Troubleshooting
 
 - If a class name is not found and you see the file containing it, try
-    running 'composer dump-autoload' from your VM.
+    running `composer dump-autoload` from your VM.
