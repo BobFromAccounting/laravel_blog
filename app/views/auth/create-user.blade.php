@@ -1,4 +1,4 @@
-{{ Form::open(array('action' => 'UsersController@store')) }}
+{{ Form::open(array('action' => 'AuthController@store')) }}
     <div class="form-group">
         {{ Form::label('username', 'Username') }}
         {{ Form::text('username', null, ['class' => 'form-control', 'autofocus', 'required']) }}
@@ -24,5 +24,5 @@
         {{ Form::password('password_confirmation', ['class' => 'form-control', 'required']) }}
     </div>
         {{ Form::submit('Create User', array('class' => 'btn btn-info'))}}
-        <a class="btn btn-default" href="{{{ action('UsersController@login') }}}">Cancel</a>
+        <a class="btn btn-default" href="{{{ action('AuthController@login') }}}">Cancel</a>
 {{ Form::close() }}

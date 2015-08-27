@@ -1,11 +1,20 @@
 <?php
 
-class BaseController extends Controller {
+use Bbatsche\Entrust\Traits\EntrustControllerTrait;
+
+class BaseController extends Controller 
+{
+
+	use EntrustControllerTrait;
 
 	public function __construct()
 	{
 	    // require csrf token for all post, delete, and put actions
 	    $this->beforeFilter('csrf', array('on' => array('post', 'delete', 'put')));
+
+	    //before filter for entrust admin implementation
+	    $this->beforeFilter('@entrustPermissionFilter');
+
 	}
 
 	/**
@@ -15,7 +24,7 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
-		if ( ! is_null($this->layout))
+		if (! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
 		}

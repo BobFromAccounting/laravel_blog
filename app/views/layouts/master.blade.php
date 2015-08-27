@@ -27,17 +27,17 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li><a href="{{{ action('HomeController@showAbout') }}}">About</a></li>
+                            <li><a href="{{{ action('HomeController@showContact') }}}">Contact</a></li>
                             <li><a href="{{{ action('HomeController@showResume') }}}">Resume</a></li>
                             <li><a href="{{{ action('HomeController@showPortfolio') }}}">Portfolio</a></li>
                             <li><a href="{{{ action('PostsController@index') }}}">Blog</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{{{ action('HomeController@showAbout') }}}">About</a></li>
-                            <li><a href="{{{ action('HomeController@showContact') }}}">Contact</a></li>
                             @if(Auth::check())
-                                <li><a href="{{{ action('UsersController@logout') }}}">Logout</a></li>
+                                <li><a href="{{{ action('AuthController@logout') }}}">Logout</a></li>
                             @else
-                                <li><a href="{{{ action('UsersController@login') }}}">Login</a></li>
+                                <li><a href="{{{ action('AuthController@login') }}}">Login</a></li>
                             @endif
                         </ul>
                     </div>
@@ -64,6 +64,7 @@
             @endif
         </div>
             @yield('content')
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

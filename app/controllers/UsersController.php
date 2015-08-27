@@ -1,199 +1,86 @@
 <?php
 
-
-
-/**
- * UsersController Class
- *
- * Implements actions regarding user management
- */
-class UsersController extends Controller
+class UsersController extends BaseController
 {
+    protected $entrustPerms = array(
+        'index'   => 'user-edit',
+        'show'    => ['user-edit-own',    'user-edit'],
+        'edit'    => ['user-edit-own',    'user-edit'],
+        'update'  => ['user-edit-own',    'user-edit'],
+        'role'    => 'edit-user-roles,'
+    );
 
-    /**
-     * Displays the form for account creation
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
-        return View::make(Config::get('confide::signup_form'));
+        $users = User::all();
+
+        $users->paginate(4);
+
+        return View::make('users.index')->with('users', $users);
     }
 
-    /**
-     * Stores new account
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function store()
+    public function show($id)
     {
-        $repo = App::make('UserRepository');
-        $user = $repo->signup(Input::all());
+        $user = User::findOrFail($id);
 
-        if ($user->id) {
-            if (Config::get('confide::signup_email')) {
-                Mail::queueOn(
-                    Config::get('confide::email_queue'),
-                    Config::get('confide::email_account_confirmation'),
-                    compact('user'),
-                    function ($message) use ($user) {
-                        $message
-                            ->to($user->email, $user->username)
-                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
-                    }
-                );
-            }
-
-            return Redirect::action('UsersController@login')
-                ->with('notice', Lang::get('confide::confide.alerts.account_created'));
-        } else {
-            $error = $user->errors()->all(':message');
-
-            return Redirect::action('UsersController@create')
-                ->withInput(Input::except('password'))
-                ->withErrors($error);
+        if (!$user) {
+            App::abort(404);
         }
+
+        return View::make('users.show')->with('user', $user);
     }
 
-    /**
-     * Displays the login form
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function login()
+    public function edit($id)
     {
-        if (Confide::user()) {
-            return Redirect::to('/');
-        } else {
-            return View::make(Config::get('confide::login_form'));
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            App::abort(404);
         }
-    }
 
-    /**
-     * Attempt to do login
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function doLogin()
-    {
-        $repo = App::make('UserRepository');
-        $input = Input::all();
+        $validator = Validator::make(Input::all(), User::$rules);
 
-        if ($repo->login($input)) {
-            return Redirect::intended('/');
+        if ($validator->fails()) {
+            Session::flash('errorMessage', 'Ohh no! Something went wrong...You should be seeing some errors down below...');
+            Log::info('Validator failed', Input::all());
+            // validation failed, redirect to the post create page with validation errors and old inputs
+            return Redirect::back()->withInput()->withErrors($validator);
         } else {
-            if ($repo->isThrottled($input)) {
-                $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ($repo->existsButNotConfirmed($input)) {
-                $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
-            } else {
-                $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
-            }
 
-            return Redirect::action('UsersController@login')
-                ->withInput(Input::except('password'))
-                ->with('errorMessage', $err_msg);
+            $user->first_name = Input::get('firstName');
+            $user->last_name  = Input::get('lastName');
+            $user->email      = Input::get('email');
+            $user->save();
+
+            Session::flash('successMessage', 'Your profile has been successfully updated.');
+
+            return Redirect::action('UserssController@show', array($user->id));
         }
+
+        return View::make('users.edit')->with('user', $user);
     }
 
-    /**
-     * Attempt to confirm account with code
-     *
-     * @param  string $code
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function confirm($code)
+    public function update($id)
     {
-        if (Confide::confirm($code)) {
-            $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-            return Redirect::action('UsersController@login')
-                ->with('error', $error_msg);
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            App::abort(404);
         }
+
+        return $this->validateAndSave($user);
     }
 
-    /**
-     * Displays the forgot password form
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function forgotPassword()
+    public function role($id, $role)
     {
-        return View::make(Config::get('confide::forgot_password_form'));
+        $user = User::findOrFail($id);
+
+        $user->attachRole($role);
+
+        Session::flash('successMessage', 'Role successfully added to user account.');
+
+        return Redirect::action('UsersController@index');
+
     }
 
-    /**
-     * Attempt to send change password link to the given email
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function doForgotPassword()
-    {
-        if (Confide::forgotPassword(Input::get('email'))) {
-            $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
-            return Redirect::action('UsersController@doForgotPassword')
-                ->withInput()
-                ->with('error', $error_msg);
-        }
-    }
-
-    /**
-     * Shows the change password form with the given token
-     *
-     * @param  string $token
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function resetPassword($token)
-    {
-        return View::make(Config::get('confide::reset_password_form'))
-                ->with('token', $token);
-    }
-
-    /**
-     * Attempt change password of the user
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function doResetPassword()
-    {
-        $repo = App::make('UserRepository');
-        $input = array(
-            'token'                 =>Input::get('token'),
-            'password'              =>Input::get('password'),
-            'password_confirmation' =>Input::get('password_confirmation'),
-        );
-
-        // By passing an array with the token, password and confirmation
-        if ($repo->resetPassword($input)) {
-            $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-            return Redirect::action('UsersController@resetPassword', array('token'=>$input['token']))
-                ->withInput()
-                ->with('error', $error_msg);
-        }
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function logout()
-    {
-        Confide::logout();
-
-        return Redirect::to('/');
-    }
 }

@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
+		DB::table('permissions')->delete();
+
+		DB::table('roles')->delete();
+
 		DB::table('posts')->delete();
 
 		DB::table('users')->delete();
@@ -18,6 +22,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UsersTableSeeder');
 
 		$this->call('PostsTableSeeder');
+
+		$this->call('EntrustSeeder');
 	}
 
 }

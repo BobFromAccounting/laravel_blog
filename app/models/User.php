@@ -2,10 +2,12 @@
 
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\ConfideUserInterface;
+use Bbatsche\Entrust\Contracts\EntrustUserInterface;
+use Bbatsche\Entrust\Traits\EntrustUserTrait;
 
-class User extends BaseModel implements ConfideUserInterface {
+class User extends BaseModel implements ConfideUserInterface, EntrustUserInterface {
 
-	use ConfideUser;
+	use ConfideUser, EntrustUserTrait;
 
 	/**
 	 * The database table used by the model.
@@ -25,4 +27,10 @@ class User extends BaseModel implements ConfideUserInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+
+	public static $rules = array(
+        'first_name'  => 'required|max:100',
+        'last_name'   => 'required|max:100',
+        'email'       => 'required|max:100'
+    );
 }

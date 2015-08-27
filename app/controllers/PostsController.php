@@ -1,6 +1,16 @@
 <?php
 
-class PostsController extends BaseController {
+class PostsController extends BaseController 
+{
+
+	protected $entrustPerms = array(
+		'create'  => ['post-create-once', 'post-create'],
+		'store'   => ['post-create-once', 'post-create'],
+		'edit'    => ['post-edit-own',    'post-edit'],
+		'update'  => ['post-edit-own',    'post-edit'],
+		'destroy' => 'post-destroy',
+	);
+	
 
 	public function __construct ()
 	{
@@ -52,13 +62,17 @@ class PostsController extends BaseController {
 	 */
 	public function store()
 	{
-			$post = new Post();
-	        // validation succeeded, create and save the post
-			Log::info("Post created successfully.");
 
-			Log::info("Log Message", array('context' => Input::all()));
+		$post = new Post();
+        // validation succeeded, create and save the post
+		Log::info("Post created successfully.");
 
-			return $this->validateAndSave($post);
+		Log::info("Log Message", array('context' => Input::all()));
+	
+		if (Entrust::hasRole('guest')) {
+			Entrust::user()->detachPermission('post-create-once');
+		}
+		return $this->validateAndSave($post);
 	}
 
 
@@ -70,7 +84,7 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::find($id);
+		$post = Post::findOrFail($id);
 
 		if (!$post) {
 			App::abort(404);
@@ -88,12 +102,12 @@ class PostsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$post = Post::find($id);
+		$post = Post::findOrFail($id);
 
 		if (!$post) {
 			App::abort(404);
 		}
-
+		
 		return View::make('posts.edit')->with('post', $post);
 	}
 
@@ -106,12 +120,12 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$post = Post::find($id);
+		$post = Post::findOrFail($id);
 
 		if (!$post) {
 			App::abort(404);
 		}
-
+		
 		return $this->validateAndSave($post);
 	}
 
@@ -127,7 +141,7 @@ class PostsController extends BaseController {
 		$post = Post::findOrFail($id);		
 		$post->delete();
 
-		Session::flash('successMessage', 'Your post has been successfully deleted.');
+		Session::flash('successMessage', 'This post has been successfully deleted.');
 
 		return Redirect::action('PostsController@index');
 	}

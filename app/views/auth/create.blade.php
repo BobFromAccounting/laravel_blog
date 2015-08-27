@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head')
-    <meta name="description" content="login">
+    <meta name="description" content="signup">
     <title>Signup</title>
     <style type="text/css">
         body {

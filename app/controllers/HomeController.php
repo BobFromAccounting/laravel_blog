@@ -40,20 +40,4 @@ class HomeController extends BaseController {
 		return View::make('contact');
 	}
 
-	public function showdice($guessNum)
-	{   
-	    $randNum = mt_rand(1, 6);
-
-	    if ($guessNum == $randNum) {
-	        $response = "Success!";
-	    } else {
-	        $response = "Sorry, not sorry. Pray to the dice gods.";
-	    }
-	    $data = array(
-	        'guessNum' => $guessNum,
-	        'randNum'  => $randNum,
-	        'response' => $response
-	    );
-	    return View::make('roll-dice')->with($data);
-	}
 }

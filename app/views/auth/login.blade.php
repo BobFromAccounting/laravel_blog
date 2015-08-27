@@ -37,7 +37,7 @@
                 <h3 class="panel-title" align="center">Login</h3>
             </div>
             <div class="panel-body">
-                {{ Form::open(array('action' => 'UsersController@doLogin')) }}
+                {{ Form::open(array('action' => 'AuthController@doLogin')) }}
                     <div class="form-group">
                         {{ Form::label('email', 'Email') }}
                         {{ Form::email('email', null, ['class' => 'form-control', 'autofocus']) }}
