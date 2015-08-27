@@ -15,12 +15,12 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+    'domain' => $_ENV['MAILGUN_DOMAIN_KEY'],
+    'secret' => $_ENV['MAILGUN_SECRET'],
 	),
 
 	'mandrill' => array(
-		'secret' => '',
+		'secret' => $_ENV['MANDRILL_SECRET'],
 	),
 
 	'stripe' => array(
