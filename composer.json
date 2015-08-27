@@ -6,7 +6,13 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"fzaninotto/faker": "^1.5"
+		"fzaninotto/faker": "^1.5",
+		"zizaco/confide": "~4.3",
+		"bbatsche/entrust": "~2.0@beta",
+		"guzzlehttp/guzzle": "~4.0"
+	},
+	"require-dev": {
+		"barryvdh/laravel-debugbar": "1.8.*"
 	},
 	"autoload": {
 		"classmap": [

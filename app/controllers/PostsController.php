@@ -2,6 +2,13 @@
 
 class PostsController extends BaseController {
 
+	public function __construct ()
+	{
+		parent::__construct();
+
+		$this->beforeFilter('auth', array('except' => array('index', 'show')));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,11 +16,25 @@ class PostsController extends BaseController {
 	 */
 	public function index()
 	{	
-		$posts = Post::paginate(4);
+		$query = Post::with('user');
 
+		$search = strtolower(Input::get('search'));
+
+		if($search) {
+			$query->where('title', 'like', '%' . $search . '%');
+			$query->orWhere('body', 'like', '%' . $search . '%');
+			$query->orWhereHas('user', function($q) {
+				$search = Input::get('search');
+				$q->where('first_name', 'like', '%' . $search . '%');
+			});
+			$query->orWhereHas('user', function($q) {
+				$search = Input::get('search');
+				$q->where('last_name', 'like', '%' . $search . '%');
+			});
+		}
+			$posts = $query->orderBy('updated_at')->paginate(4);
 		return View::make('posts.index')->with('posts', $posts);
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -23,7 +44,6 @@ class PostsController extends BaseController {
 	public function create()
 	{	
 		return View::make('posts.create');
-
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -57,7 +77,6 @@ class PostsController extends BaseController {
 		}
 
 		return View::make('posts.show')->with('post', $post);
-
 	}
 
 
@@ -126,9 +145,9 @@ class PostsController extends BaseController {
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    } else {
 
-			$post->title = Input::get('title');
-			$post->body  = Input::get('body');
-
+			$post->title   = Input::get('title');
+			$post->body    = Input::get('body');
+			$post->user_id = Auth::id();
 			$post->save();
 
 			Session::flash('successMessage', 'Your post has been successfully saved.');
@@ -136,5 +155,4 @@ class PostsController extends BaseController {
 			return Redirect::action('PostsController@show', array($post->id));
 		}
 	}
-
 }

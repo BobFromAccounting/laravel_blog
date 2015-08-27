@@ -16,13 +16,14 @@
             {{{ $post->body }}}
         </p>
         <a class="btn btn-info" href="{{{ action('PostsController@index') }}}">Back</a>
-        <a class="btn btn-warning" href="{{{ action('PostsController@edit', $post->id) }}}">Edit Post</a>
-        <button id="delete" class="btn btn-danger">Delete Post</button>
+        @if(Auth::check() && Auth::id() == $post->user_id)
+            <a class="btn btn-warning" href="{{{ action('PostsController@edit', $post->id) }}}">Edit Post</a>
+            <button id="delete" class="btn btn-danger">Delete Post</button>
+        @endif
     </div>
 
     {{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE', 'id' => 'formDelete'))}}
     {{ Form::close() }}
-    {{-- Section for comments should go and whatever rating system I would like to use. --}}
 @stop
 
 @section('script')

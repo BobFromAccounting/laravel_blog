@@ -11,11 +11,23 @@
 |
 */
 
-Route::get('/', 'HomeController@showhome');
+Route::get('/login', 'HomeController@showLogin');
 
-Route::get('/resume', 'HomeController@showresume');
+Route::post('/login', 'HomeController@doLogin');
 
-Route::get('/portfolio', 'HomeController@showportfolio');
+Route::get('/logout', 'HomeController@doLogout');
+
+Route::post('/signup', 'HomeController@doSignup');
+
+Route::get('/about', 'HomeController@showAbout');
+
+Route::get('/contact', 'HomeController@showContact');
+
+Route::get('/', 'HomeController@showHome');
+
+Route::get('/resume', 'HomeController@showResume');
+
+Route::get('/portfolio', 'HomeController@showPortfolio');
 
 Route::get('/rollad6/{guessNum}', 'HomeController@showdice');
 
@@ -33,3 +45,16 @@ Route::get('orm-test', function()
     $post2->body  = 'The body for post number two.';
     $post2->save();
 });
+//
+
+// Confide routes
+Route::get('users/create', 'UsersController@create');
+Route::post('users', 'UsersController@store');
+Route::get('users/login', 'UsersController@login');
+Route::post('users/login', 'UsersController@doLogin');
+Route::get('users/confirm/{code}', 'UsersController@confirm');
+Route::get('users/forgot_password', 'UsersController@forgotPassword');
+Route::post('users/forgot_password', 'UsersController@doForgotPassword');
+Route::get('users/reset_password/{token}', 'UsersController@resetPassword');
+Route::post('users/reset_password', 'UsersController@doResetPassword');
+Route::get('users/logout', 'UsersController@logout');

@@ -13,24 +13,37 @@
         <script src="/js/bootstrap.js"></script>
     </head>
     <body>
-        <div="row">
-            <div class="col-md-12">
-                <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{{ action('HomeController@showhome') }}}">T S Hafez</a>
+                        <a class="navbar-brand" href="{{{ action('HomeController@showHome') }}}">T S Hafez</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{{ action('HomeController@showresume') }}}">Resume</a></li>
-                            <li><a href="{{{ action('HomeController@showportfolio') }}}">Portfolio</a></li>
+                            <li><a href="{{{ action('HomeController@showResume') }}}">Resume</a></li>
+                            <li><a href="{{{ action('HomeController@showPortfolio') }}}">Portfolio</a></li>
                             <li><a href="{{{ action('PostsController@index') }}}">Blog</a></li>
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{{ action('HomeController@showAbout') }}}">About</a></li>
+                            <li><a href="{{{ action('HomeController@showContact') }}}">Contact</a></li>
+                            @if(Auth::check())
+                                <li><a href="{{{ action('UsersController@logout') }}}">Logout</a></li>
+                            @else
+                                <li><a href="{{{ action('UsersController@login') }}}">Login</a></li>
+                            @endif
+                        </ul>
                     </div>
-                    <!-- /.navbar-collapse -->
-                </nav>
-            </div>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
         </div>
         <div class="container" style="padding-top: 60px;">
             @if (Session::has('successMessage'))
