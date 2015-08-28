@@ -21,7 +21,7 @@
                 <h3 class="panel-title" align="center">Signup</h3>
             </div>
             <div class="panel-body">
-                @include('auth.create-edit')
+                @include('auth.create-user')
             </div>      
         </div>
     </div>

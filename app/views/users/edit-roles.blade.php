@@ -14,8 +14,8 @@
             {{ Form::model($user, array('action' => array('UsersController@editRole'), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
                 <div class="panel-body">
                     <div class="form-group">
-                        {{ Form::label('first_name', 'First Name') }}
-                        {{ Form::text('first_name', null, ['class' => 'form-control', 'autofocus']) }}
+                        {{ Form::label('roles', 'First Name') }}
+                        {{ Form::select('roles', null, ['class' => 'form-control', 'autofocus']) }}
                     </div>
                     {{ Form::submit('Save Changes', array('class' => 'btn btn-warning', 'style' => 'float: right;')) }}
                     <a class="btn btn-default" href="{{{ action('UsersController@edit', $user->id) }}}">Cancel</a>

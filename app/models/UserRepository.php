@@ -35,9 +35,6 @@ class UserRepository
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
 
-        // Attach read only user role to account
-        $user->attachRoles('user');
-
         // Save if valid. Password field will be hashed before save
         $this->save($user);
 

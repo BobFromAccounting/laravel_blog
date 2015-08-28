@@ -23,14 +23,11 @@ Route::get('/portfolio', 'HomeController@showPortfolio');
 Route::resource('/posts', 'PostsController');
 
 // Entrust Users Routes
-Route::get('users/index', 'UsersController@index');
-Route::get('users/{users}', 'UsersController@show');
-Route::get('users/{users}/edit', 'UsersController@edit');
-Route::put('users/{users}', 'UsersController@update');
-Route::patch('users/{users}', 'UsersController@update');
 Route::get('users/{users}/user', 'UsersController@role');
 Route::put('users/{users}/role', 'UsersController@editRole');
 Route::patch('users/{users}/role', 'UsersController@editRole');
+
+Route::resource('/users', 'UsersController');
 
 
 // Confide routes

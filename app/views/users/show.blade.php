@@ -1,5 +1,4 @@
 @extends('layouts.master')
-<?php $roles = Role::all() ?>
 
 @section('head')
     <meta name="description" content="View User Profile">
@@ -16,7 +15,7 @@
             {{{ $user->email }}}
         </p>
         @if(Entrust::hasRole('admin'))
-            @foreach ($roles as $role)
+            @foreach ($user->roles as $role)
                 <p>
                     <strong>{{{ $role->display_name }}}: </strong>
                 </p>

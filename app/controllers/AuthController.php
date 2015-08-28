@@ -40,7 +40,11 @@ class AuthController extends BaseController
                     }
                 );
             }
+                    
+            $userRole = Role::where('name', 'user')->firstOrFail();
 
+            $user->attachRole($userRole);
+            
             return Redirect::action('AuthController@login')
                 ->with('notice', Lang::get('confide::confide.alerts.account_created'));
         } else {
