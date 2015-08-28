@@ -103,7 +103,7 @@ class UsersController extends \BaseController {
     		App::abort(404);
     	}
 
-        return View::make('users.edit-roles')->with($user->id);
+        return View::make('users.edit-roles')->with(array('user' => $user));
     }
 
     public function editRole($id)

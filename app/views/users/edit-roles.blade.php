@@ -11,7 +11,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Edit User Roles</h3>
             </div>
-            {{ Form::model($user, array('action' => array('UsersController@editRole', $user->id), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
+            {{ Form::model($user, array('action' => array('UsersController@editRole'), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
                 <div class="panel-body">
                     <div class="form-group">
                         {{ Form::label('first_name', 'First Name') }}

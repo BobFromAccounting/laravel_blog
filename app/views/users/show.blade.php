@@ -25,8 +25,11 @@
                 </p>
             @endforeach
         @endif
-
-        <a class="btn btn-info" href="{{{ action('UsersController@index') }}}">Back</a>
+        @if(Entrust::hasRole('admin'))
+            <a class="btn btn-info" href="{{{ action('UsersController@index') }}}">Back</a>
+        @else
+            <a class="btn btn-info" href="{{{ action('PostsController@index') }}}">Back</a>
+        @endif
         @if((Auth::check() && Auth::id() == $user->id) || (Auth::check() && Entrust::hasRole('admin')))
             <a class="btn btn-warning" href="{{{ action('UsersController@edit', $user->id) }}}">Edit User</a>
         @endif
