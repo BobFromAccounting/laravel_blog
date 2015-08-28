@@ -11,27 +11,26 @@
 |
 */
 
+// Home Controller Routes
 Route::post('/signup', 'HomeController@doSignup');
-
 Route::get('/about', 'HomeController@showAbout');
-
 Route::get('/contact', 'HomeController@showContact');
-
 Route::get('/', 'HomeController@showHome');
-
 Route::get('/resume', 'HomeController@showResume');
-
 Route::get('/portfolio', 'HomeController@showPortfolio');
 
+// Posts Routes
 Route::resource('/posts', 'PostsController');
 
 // Entrust Users Routes
-
 Route::get('users/index', 'UsersController@index');
 Route::get('users/{users}', 'UsersController@show');
 Route::get('users/{users}/edit', 'UsersController@edit');
 Route::put('users/{users}', 'UsersController@update');
 Route::patch('users/{users}', 'UsersController@update');
+Route::get('users/{users}/user', 'UsersController@role');
+Route::put('users/{users}/role', 'UsersController@editRole');
+Route::patch('users/{users}/role', 'UsersController@editRole');
 
 
 // Confide routes

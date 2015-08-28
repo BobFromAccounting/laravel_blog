@@ -3,11 +3,12 @@
 class UsersController extends \BaseController {
     protected $entrustPerms = array(
 
-        'index'  => 'user-edit',
-        'show'   => ['user-edit-own',    'user-edit'],
-        'edit'   => ['user-edit-own',    'user-edit'],
-        'update' => ['user-edit-own',    'user-edit'],
-        'role'   => 'edit-user-roles'
+        'index'    => 'user-edit',
+        'show'     => ['user-edit-own',    'user-edit'],
+        'edit'     => ['user-edit-own',    'user-edit'],
+        'update'   => ['user-edit-own',    'user-edit'],
+        'role'     => 'edit-user-roles',
+        'editRole' => 'edit-user-roles'
     );
 
 	/**
@@ -83,26 +84,46 @@ class UsersController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($validator);
         } else {
 
-            $user->first_name = Input::get('firstName');
-            $user->last_name  = Input::get('lastName');
+            $user->first_name = Input::get('first_name');
+            $user->last_name  = Input::get('last_name');
             $user->email      = Input::get('email');
             $user->save();
 
             Session::flash('successMessage', 'Your profile has been successfully updated.');
 
-            return Redirect::action('UserssController@show', array($user->id));
+            return Redirect::action('UsersController@show', array($user->id));
         }
 	}
 
-    public function role($id, $role)
+    public function role($id)
     {
-        $user = User::find($id);
+    	$user = User::find($id);
 
-        $user->attachRole($role);
+    	if (!$user) {
+    		App::abort(404);
+    	}
 
-        Session::flash('successMessage', 'Role successfully added to user account.');
+        return View::make('users.edit-roles')->with($user->id);
+    }
 
-        return Redirect::action('UsersController@show', array($user->id));
+    public function editRole($id)
+    {
+    	$user = User::find($id);
+
+    	if($user->hasRole(Input::get('role'))) {
+    		
+	        $user->detachRole(Input::get('role'));
+
+	        Session::flash('successMessage', 'Role successfully removed from user account.');
+    	} else {
+    		
+	        $user->attachRole(Input::get('role'));
+
+	        Session::flash('successMessage', 'Role successfully added to user account.');
+    	}
+
+
+        return Redirect::action('UsersController@edit', array($user->id));
     }
 	
 

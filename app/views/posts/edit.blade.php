@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head')
-        <meta name="description" content="Blog Creation page">
+        <meta name="description" content="Blog Edit page">
         <title>Edit Blog Post</title>
 @stop
 
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Create a Blog Post.</h3>
+                <h3 class="panel-title">Edit Your Blog Post.</h3>
             </div>
             {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
                 <div class="panel-body">
@@ -21,6 +21,5 @@
                 </div> 
             {{ Form::close() }}
         </div>
-    </div>   
-
+    </div>
 @stop

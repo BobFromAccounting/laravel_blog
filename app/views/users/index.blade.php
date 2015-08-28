@@ -2,12 +2,12 @@
 
 @section('head')
     <meta name="description" content="View All Users">
-    <title>Users Index</title>
+    <title>User Index</title>
 @stop
 
 @section('content')
     <div class="container">
-        <h1>Users</h1>
+        <h1>User Index</h1>
         {{ $users->links() }}
         <br>
         <br>
