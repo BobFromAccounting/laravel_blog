@@ -1,38 +1,74 @@
 <?php
 
-class UsersController extends BaseController
-{
+class UsersController extends \BaseController {
     protected $entrustPerms = array(
-        'index'   => 'user-edit',
-        'show'    => ['user-edit-own',    'user-edit'],
-        'edit'    => ['user-edit-own',    'user-edit'],
-        'update'  => ['user-edit-own',    'user-edit'],
-        'role'    => 'edit-user-roles,'
+
+        'index'  => 'user-edit',
+        'show'   => ['user-edit-own',    'user-edit'],
+        'edit'   => ['user-edit-own',    'user-edit'],
+        'update' => ['user-edit-own',    'user-edit'],
+        'role'   => 'edit-user-roles'
     );
 
-    public function index()
-    {
-        $users = User::all();
-
-        $users->paginate(4);
+	/**
+	 * Display a listing of the resource.
+	 * GET /users
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$users = User::paginate(4);
 
         return View::make('users.index')->with('users', $users);
-    }
+	}
 
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
+	/**
+	 * Display the specified resource.
+	 * GET /users/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$user = User::findOrFail($id);
 
         if (!$user) {
             App::abort(404);
         }
 
         return View::make('users.show')->with('user', $user);
-    }
+	}
 
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /users/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$user = User::find($id);
+
+        if (!$user) {
+            App::abort(404);
+        }
+
+        return View::make('users.edit')->with('user', $user);
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /users/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+	    $user = User::find($id);
 
         if (!$user) {
             App::abort(404);
@@ -56,31 +92,18 @@ class UsersController extends BaseController
 
             return Redirect::action('UserssController@show', array($user->id));
         }
-
-        return View::make('users.edit')->with('user', $user);
-    }
-
-    public function update($id)
-    {
-        $user = User::findOrFail($id);
-
-        if (!$user) {
-            App::abort(404);
-        }
-
-        return $this->validateAndSave($user);
-    }
+	}
 
     public function role($id, $role)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
 
         $user->attachRole($role);
 
         Session::flash('successMessage', 'Role successfully added to user account.');
 
-        return Redirect::action('UsersController@index');
-
+        return Redirect::action('UsersController@show', array($user->id));
     }
+	
 
 }

@@ -32,6 +32,9 @@
                             <li><a href="{{{ action('HomeController@showResume') }}}">Resume</a></li>
                             <li><a href="{{{ action('HomeController@showPortfolio') }}}">Portfolio</a></li>
                             <li><a href="{{{ action('PostsController@index') }}}">Blog</a></li>
+                            @if(Entrust::hasRole('admin'))
+                                <li><a href="{{{ action('UsersController@index') }}}">Users Index</a></li>
+                            @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             @if(Auth::check())

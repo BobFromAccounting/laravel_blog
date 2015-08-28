@@ -26,7 +26,7 @@
             <h4 class="modal-title" id="myModalLabel">Signup</h4>
           </div>
           <div class="modal-body">
-            @include('auth.create-edit')
+            @include('auth.create-user')
           </div>
         </div>
       </div>
