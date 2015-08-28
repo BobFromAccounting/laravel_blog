@@ -37,6 +37,7 @@ class EntrustSeeder extends Seeder {
 
         $seconduser = User::where('username', '=', 'CiaoRachel')->first();
         $seconduser->attachRole($guestBlogger);
+        $seconduser->attachRole($newUser);
 
         /* ======================================================== */
         // Permissions

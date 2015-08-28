@@ -15,7 +15,7 @@
         <p>
             {{{ $user->email }}}
         </p>
-        @if($user->hasRole('admin'))
+        @if(Entrust::hasRole('admin'))
             @foreach ($roles as $role)
                 <p>
                     <strong>{{{ $role->display_name }}}: </strong>
