@@ -23,10 +23,10 @@
             <div class="panel-body">
                 <div>
                 	<p>
-                		Hello, I am that guy from the thing. I am a new Full Stack Web Developer, currently located in San Antonio, Texas. I specialize in the LAMP/LEMP stack incorporating JavaScript and JQuery, amoung other technologies into my design.
+                		Hello, I am that guy from the thing. I am a Full Stack Web Developer, currently located in San Antonio, Texas. I specialize in the LAMP/LEMP stack incorporating JavaScript and JQuery, amoung other technologies into my development toolkit.
                 	</p>
                 	<p>
-                		It is my hope that you will find something entertaining on my site, that will get you either interested in learning more about myself or my wor; Or maybe just learn something you didn't know before.
+                		It is my hope that you will find something entertaining on my site, that will get you either interested in learning more about myself and my work. Or maybe you might learn something you didn't know before. Either way, I want this to be an enjoyable experience for all.
                 	</p>
                 </div>
             </div>

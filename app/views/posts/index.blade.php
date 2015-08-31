@@ -26,7 +26,7 @@
                 Authored by: {{{ $post->user->first_name }}} {{{ $post->user->last_name }}}
             </p>
             <p>
-                {{{ Str::words($post->body, 20) }}}
+                {{ $post->renderBody(20) }}
             </p>
             <a class="btn btn-default" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
         </div>

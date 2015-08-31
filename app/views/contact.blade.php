@@ -27,7 +27,7 @@
                 <div align="center">
                     <p>
                         <!-- Facebook Badge START -->
-                        <a href="https://www.facebook.com/bobfraccounting" title="Tarek Hafez" target="_TOP"><img class="img" src="https://badge.facebook.com/badge/1163308064.294.436705763.png" style="border: 0px;" alt="" /></a><br /><!-- Facebook Badge END -->
+                        <a href="https://www.facebook.com/bobfraccounting"target="_TOP"><img class="img" src="https://badge.facebook.com/badge/1163308064.294.436705763.png"/></a><br /><!-- Facebook Badge END -->
 
                     </p>
                     <p>

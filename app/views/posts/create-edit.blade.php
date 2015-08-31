@@ -5,5 +5,5 @@
     </div>
     <div class="form-group">
         {{ Form::label('body', 'Blog Body') }}
-        {{ Form::textarea('body', null, ['class' => 'form-control', 'rows' => '15']) }}
+        {{ Form::textarea('body', null, ['class' => 'form-control', 'data-provide' => 'markdown', 'rows' => '15']) }}
     </div>
