@@ -99,29 +99,24 @@ class UsersController extends \BaseController {
     {
     	$user = User::find($id);
 
+        $roles = Role::all();
+
     	if (!$user) {
     		App::abort(404);
     	}
 
-        return View::make('users.edit-roles')->with(array('user' => $user));
+        return View::make('users.edit-roles')->with(array('user' => $user, 'roles' => $roles));
     }
 
     public function editRole($id)
     {
     	$user = User::find($id);
 
-    	if($user->hasRole(Input::get('role'))) {
-    		
-	        $user->detachRole(Input::get('role'));
+        $roles = Input::get('roles');
 
-	        Session::flash('successMessage', 'Role successfully removed from user account.');
-    	} else {
-    		
-	        $user->attachRole(Input::get('role'));
-
-	        Session::flash('successMessage', 'Role successfully added to user account.');
-    	}
-
+        $user->roles()->sync($roles);
+            
+        Session::flash('successMessage', "Role successfully updated on $user->first_name's account.");
 
         return Redirect::action('UsersController@edit', array($user->id));
     }

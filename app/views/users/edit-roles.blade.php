@@ -11,12 +11,14 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Edit User Roles</h3>
             </div>
-            {{ Form::model($user, array('action' => array('UsersController@editRole'), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
+            {{ Form::model($user, array('action' => array('UsersController@editRole', $user->id), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
                 <div class="panel-body">
-                    <div class="form-group">
-                        {{ Form::label('roles', 'First Name') }}
-                        {{ Form::select('roles', null, ['class' => 'form-control', 'autofocus']) }}
-                    </div>
+                    @foreach ($roles as $role)
+                        <div class="form-group">
+                            {{ Form::label('roles[]', $role->display_name) }}
+                            {{ Form::checkbox("roles[]", $role->id) }}
+                        </div>
+                    @endforeach
                     {{ Form::submit('Save Changes', array('class' => 'btn btn-warning', 'style' => 'float: right;')) }}
                     <a class="btn btn-default" href="{{{ action('UsersController@edit', $user->id) }}}">Cancel</a>
                 </div> 
