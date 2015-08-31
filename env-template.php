@@ -10,4 +10,12 @@ return array(
     'USER_EMAIL'      => '';
     'USER_USERNAME'   => '',
     'USER_PASS'       => '',
+    'GUEST_FIRST_NAME'   => '',
+    'GUEST_LAST_NAME'    => '',
+    'GUEST_EMAIL'        => '',
+    'GUEST_USERNAME'     => '',
+    'GUEST_PASS'         => '',
+    'MAIL_DOMAIN' => '',
+    'MAIL_SECRET' => '',
+
 );

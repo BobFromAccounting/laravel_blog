@@ -33,7 +33,7 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         if (!$user) {
             App::abort(404);
