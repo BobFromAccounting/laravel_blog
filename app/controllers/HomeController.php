@@ -40,4 +40,19 @@ class HomeController extends BaseController {
 		return View::make('contact');
 	}
 
+	public function showMario()
+	{
+		return View::make('portfolio/mariosescapeplan');
+	}
+
+	public function showSimon()
+	{
+		return View::make('portfolio/simplesimon');
+	}
+
+	public function showAnimate()
+	{
+		return View::make('portfolio/animate-jquery');
+	}
+
 }

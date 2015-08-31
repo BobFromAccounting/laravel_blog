@@ -22,7 +22,7 @@
             </div>
             <div class="panel-body">
                 <p>
-                    I am a voracious consumer of literature and scientific research. With a constant hunger for knowledge and experience, I find absolute job in breaking down new and complex subjects into easy to understand concepts.
+                    I am a voracious consumer of literature and scientific research. With a constant hunger for knowledge, I am skilled at breaking down new and complex subjects into easy to understand concepts.
                 </p>
                 <p>
                     I am a Full Stack Web Developer with experience working with:

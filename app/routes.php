@@ -17,7 +17,12 @@ Route::get('/about', 'HomeController@showAbout');
 Route::get('/contact', 'HomeController@showContact');
 Route::get('/', 'HomeController@showHome');
 Route::get('/resume', 'HomeController@showResume');
+
+// Portfolio Routes
 Route::get('/portfolio', 'HomeController@showPortfolio');
+Route::get('/portfolio/mariosescapeplan', 'HomeController@showMario');
+Route::get('/portfolio/scarysimon', 'HomeController@showSimon');
+Route::get('/portfolio/animate-jquery', 'HomeController@showAnimate');
 
 // Posts Routes
 Route::resource('/posts', 'PostsController');
@@ -28,7 +33,6 @@ Route::put('users/{users}/role', 'UsersController@editRole');
 Route::patch('users/{users}/role', 'UsersController@editRole');
 
 Route::resource('/users', 'UsersController');
-
 
 // Confide routes
 Route::get('auth/create', 'AuthController@create');

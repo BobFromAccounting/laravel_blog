@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Simple Simon Game">
+        <meta name="author" content="Tarek S Hafez">
+        <title>Simple Simon</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/simplesimon.css">
+    </head>
+    <body>
+        <audio id="gameOverAudio" src="/audio/RingAroundTheRosie.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="inGameAudio" src="/audio/horrorambient.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="container" id="gamebox">
+            <div class="square" id="brown"></div>
+            <div class="square" id="red"></div>
+            <div class="square" id="violet"></div>
+            <div class="square" id="blue"></div>
+        </div>
+        <div id="startbuttons">
+            <a class="btn btn-danger text" id="play" href="#" role="button">Play</a>
+            <a class="btn btn-danger text" id="advanced" href="#" role="button">Advanced</a>
+            <a class="btn btn-danger text" id="round" href="#" role="button">Round # 1</a>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/js/simplesimon.js"></script>
+    </body>
+</html>

@@ -8,26 +8,28 @@
 @section('content')
     <!-- Beginning of Featurettes -->
     <div class="container">
+
         <hr class="featurette-divider">
+
         <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">Mario's Escape Plan!</h2>
+                <p class="lead">This is a re-imagining of the Whack-a-Mole javascript game. Built using only frontend technologies like CSS, JQuery, and vanilla JavaScript I was able to make this quite addicting game. Good luck helping Mario escape Bowser's dungeon. For those that remember Contra, there is a special prize in store...</p>
             </div>
             <div class="col-md-5">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <a href="{{{ action('HomeController@showMario') }}}"><img class="featurette-image img-responsive center-block" src="/img/mariosescapeplan.png"></a>
             </div>
         </div>
 
         <hr class="featurette-divider">
-
+        
         <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
-              <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">Scary Simon.</h2>
+                <p class="lead">Another take on a classic, introducing Scary Simon. A simple simon game, built using front end technologies: CSS, JavaScript, and JQuery. See how far you can get, or play on an expert mode which only shows you the last move Simon chose. Last as long as you can, before simon comes to collect your ashes...</p>
             </div>
             <div class="col-md-5 col-md-pull-7">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <a href="{{{ action('HomeController@showSimon') }}}"><img class="featurette-image img-responsive center-block" src="/img/simplesimon.png"></a>
             </div>
         </div>
 
@@ -35,11 +37,11 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">Animation Exercise</h2>
+                <p class="lead">This is an Animation Exercise I created using JQuery to manipulate a generic image on a page. </p>
             </div>
             <div class="col-md-5">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <a href="{{{ action('HomeController@showAnimate') }}}"><img class="featurette-image img-responsive center-block" src="/img/animate.png"></a>
             </div>
         </div>
 
