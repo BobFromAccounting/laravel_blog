@@ -30,6 +30,10 @@
                 <p>
                     HTML, CSS, JavaScript, JQuery, PHP, Laravel, as well as MySQL, Linux, and Apache/nginx.
                 </p>
+                <p class="col-md-7">
+                    Check out my GitHub public repositories for more code examples, and projects I have been working on.
+                </p>
+                <a class="col-md-5" href="https://github.com/BobFromAccounting"><img src="/img/GitHub.png"></a>
             </div>      
         </div>
     </div>
