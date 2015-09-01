@@ -55,4 +55,13 @@ class HomeController extends BaseController {
 		return View::make('portfolio/animate-jquery');
 	}
 
+	public function showSnorlax()
+	{
+		return View::make('portfolio/animate-jquery-full');
+	}
+
+	public function showCalculator()
+	{
+		return View::make('portfolio/calculator');
+	}
 }

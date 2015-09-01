@@ -23,3 +23,17 @@
     font-family: 'mortalkombatmythologies', sans-serif;
     
 }
+
+.input {
+    width: 128px;
+}
+.calculatorinput {
+    width: 400px;
+    margin-top: 150px;
+    margin-left: 500px;
+}
+
+.btn-width {
+    width: 95px;
+
+}
