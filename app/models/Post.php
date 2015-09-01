@@ -30,4 +30,15 @@ class Post extends BaseModel {
         
         return $cleanBody = $purifier->purify($body);
     }
+
+    public function uploadImage($file)
+    {
+        $name = $file->getClientOriginalName();
+
+        $path = '/uploadedimgs/';
+
+        $file->move(public_path() . $path, $name);
+
+        $this->image = $path . $name;
+    }
 }

@@ -158,6 +158,10 @@ class PostsController extends BaseController
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    } else {
+	    	if (Input::hasFile('image')) {
+	    		$file = Input::file('image');
+	    		$post->uploadImage($file);
+	    	}
 
 			$post->title   = Input::get('title');
 			$post->body    = Input::get('body');

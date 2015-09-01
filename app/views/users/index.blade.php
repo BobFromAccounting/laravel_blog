@@ -14,7 +14,7 @@
     @foreach ($users as $user)
         <div class="container">
             <h2>
-                {{{ $user->first_name }}} <small style='font-size: .5em;'>{{{ $user->created_at->diffForHumans() }}}</small>
+                {{{ $user->first_name }}} <small style='font-size: .5em;'>Created: {{{ $user->created_at->diffForHumans() }}}</small>
             </h2>
             <a class="btn btn-default" href="{{{ action('UsersController@show', $user->id) }}}">View User Profile</a>
         </div>

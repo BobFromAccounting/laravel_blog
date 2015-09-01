@@ -11,7 +11,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Edit Your Blog Post.</h3>
             </div>
-            {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT', 'accept-charset' => 'UTF-8')) }}
+            {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT', 'accept-charset' => 'UTF-8', 'files' => true)) }}
                 <div class="panel-body">
 
                     @include('posts.create-edit')

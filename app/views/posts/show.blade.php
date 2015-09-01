@@ -12,6 +12,9 @@
 @section('content')
     <div class="container addpadd col-md-offset-2 col-md-8">
         <h1>{{{ $post->title }}}</h1>
+
+        <img src="{{{ $post->image }}}">
+
         <h3>
             Created: {{{ $post->created_at->format('l, F jS Y @ h:i:s A') }}} by: {{{ $post->user->first_name }}} {{{ $post->user->last_name }}}
         </h3>

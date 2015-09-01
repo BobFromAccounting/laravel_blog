@@ -12,7 +12,7 @@
                 <h3 class="panel-title">Create a Blog Post.</h3>
             </div>
 
-            {{ Form::open(array('action' => 'PostsController@store')) }}
+            {{ Form::open(array('action' => 'PostsController@store', 'files' => true)) }}
                 <div class="panel-body">
         
                     @include('posts.create-edit')
