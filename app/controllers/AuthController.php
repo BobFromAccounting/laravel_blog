@@ -108,11 +108,11 @@ class AuthController extends BaseController
     {
         if (Confide::confirm($code)) {
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('UsersController@login')
+            return Redirect::action('AuthController@login')
                 ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-            return Redirect::action('UsersController@login')
+            return Redirect::action('AuthController@login')
                 ->with('error', $error_msg);
         }
     }
