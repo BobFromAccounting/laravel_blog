@@ -77,5 +77,19 @@
                 <a href="{{{ action('HomeController@showCalculator') }}}"><img class="featurette-image img-responsive center-block" src="/img/calculator.png"></a>
             </div>
         </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">AdNormal Oatmeal <small>Ad-Lister Project</small></h2>
+                <p class="lead">This is a fully functional, data-driven Ad-Lister. Built using the LAMP stack, with JavaScript implementations, me and a partner were able to create an online marketplace where organizations can come together to create an online bake sale!! The linked image will go to a gallery where you can see some screenshots of the entire site.</p>
+                <a href="https://github.com/AdnormalOatmeal/AdnormalLister"><img src="/img/GitHub.png"><p>Check it out on GitHub</p></a>
+                
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+                <a href="{{{ action('HomeController@showAdnormalGallery') }}}"><img class="featurette-image img-responsive center-block" src="/img/AdnormalAdlister.png"></a>
+            </div>
+        </div>
     </div>
 @stop

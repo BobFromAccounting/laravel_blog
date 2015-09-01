@@ -25,6 +25,7 @@ Route::get('/portfolio/scarysimon', 'HomeController@showSimon');
 Route::get('/portfolio/animate-jquery', 'HomeController@showAnimate');
 Route::get('/portfolio/animate-jquery-full', 'HomeController@showSnorlax');
 Route::get('/portfolio/calculator', 'HomeController@showCalculator');
+Route::get('/portfolio/AdnormalGallery', 'HomeController@showAdnormalGallery');
 
 // Posts Routes
 Route::resource('/posts', 'PostsController');

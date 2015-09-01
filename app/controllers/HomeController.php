@@ -64,4 +64,9 @@ class HomeController extends BaseController {
 	{
 		return View::make('portfolio/calculator');
 	}
+
+	public function showAdnormalGallery()
+	{
+		return View::make('portfolio/AdnormalGallery');
+	}
 }
