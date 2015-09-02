@@ -69,9 +69,6 @@ class PostsController extends BaseController
 
 		Log::info("Log Message", array('context' => Input::all()));
 	
-		if (Entrust::hasRole('guest')) {
-			Entrust::user()->detachPermission('post-create-once');
-		}
 		return $this->validateAndSave($post);
 	}
 
@@ -162,11 +159,15 @@ class PostsController extends BaseController
 	    		$file = Input::file('image');
 	    		$post->uploadImage($file);
 	    	}
-
+	    	
 			$post->title   = Input::get('title');
 			$post->body    = Input::get('body');
 			$post->user_id = Auth::id();
 			$post->save();
+
+	    	if (Entrust::hasRole('guest')) {
+				Entrust::user()->detachRole('guest');
+			}
 
 			Session::flash('successMessage', 'Your post has been successfully saved.');
 
