@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UsersController Class
+ * AuthController Class
  *
  * Implements actions regarding user management
  */
