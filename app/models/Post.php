@@ -21,12 +21,9 @@ class Post extends BaseModel {
         $purifier = new HTMLPurifier($config);
 
         if (!is_null($characterLimit)) {
-            $body = Str::words($this->body, $characterLimit);
-
-            $body = $Parsedown->text($body);
-        } else {
-            $body = $Parsedown->text($this->body);
+            Str::words($this->body, $characterLimit);
         }
+        $body = $Parsedown->text($this->body);
         
         return $cleanBody = $purifier->purify($body);
     }

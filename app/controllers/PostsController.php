@@ -166,7 +166,8 @@ class PostsController extends BaseController
 			$post->save();
 
 	    	if (Entrust::hasRole('guest')) {
-				Entrust::user()->detachRole('guest');
+	    		$guest = Role::where('name', 'guest')->firstOrFail();
+				Entrust::user()->detachRole($guest);
 			}
 
 			Session::flash('successMessage', 'Your post has been successfully saved.');
