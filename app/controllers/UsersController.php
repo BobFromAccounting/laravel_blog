@@ -19,7 +19,26 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::paginate(4);
+        $query = User::with('roles');
+
+        $search = strtolower(Input::get('search'));
+
+        if($search) {
+            $query->where('first_name', 'like', '%' . $search . '%');
+            $query->orWhere('last_name', 'like', '%' . $search . '%');
+            $query->orWhere('email', 'like', '%' . $search . '%');
+            $query->orWhere('username', 'like', '%' . $search . '%');
+            $query->orWhereHas('roles', function($q) {
+                $search = Input::get('search');
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+            $query->orWhereHas('roles', function($q) {
+                $search = Input::get('search');
+                $q->where('display_name', 'like', '%' . $search . '%');
+            });
+        }
+        
+        $users = $query->orderBy('created_at')->paginate(4);
 
         return View::make('users.index')->with('users', $users);
 	}

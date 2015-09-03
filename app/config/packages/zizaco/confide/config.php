@@ -49,7 +49,7 @@ return array(
     'login_form' =>             'auth/login',
     'signup_form' =>            'auth/create',
     'forgot_password_form' =>   'confide::forgot_password',
-    'reset_password_form' =>    'confide::reset_password',
+    'reset_password_form' =>    'users/reset_password',
 
     /*
     |--------------------------------------------------------------------------

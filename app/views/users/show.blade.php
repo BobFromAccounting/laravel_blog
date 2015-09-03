@@ -7,10 +7,10 @@
 
 @section('content')
     <div class="container addpadd col-md-offset-2 col-md-8 col-md-offset-2">
-        <h1>{{{ $user->first_name }}} {{{ $user->last_name }}}</h1>
-        <h3>
-            Joined: {{{ $user->created_at->format('l, F jS Y @ h:i:s A') }}}
-        </h3>
+        <h1>{{{ $user->username }}} <small><em>aka {{{ $user->first_name }}} {{{ $user->last_name }}}</em></small></h1>
+        <p>
+            <strong>Joined: {{{ $user->created_at->format('l, F jS Y @ h:i:s A') }}}</strong>
+        </p>
         <p>
             {{{ $user->email }}}
         </p>
@@ -32,5 +32,6 @@
         @if((Auth::check() && Auth::id() == $user->id) || (Auth::check() && Entrust::hasRole('admin')))
             <a class="btn btn-warning" href="{{{ action('UsersController@edit', $user->id) }}}">Edit User</a>
         @endif
+            <a class="btn btn-danger" href="">Reset Password</a>
     </div>
 @stop

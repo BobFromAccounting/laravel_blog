@@ -1,0 +1,20 @@
+{
+  "name": "thatguyfromthething",
+  "version": "0.1.0",
+  "homepage": "http://thatguyfromthething.website",
+  "authors": [
+    "Tarek S Hafez <thafez@ymail.com>"
+  ],
+  "description": "Creating sass files to override bootstrap on my blog project.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5"
+  }
+}

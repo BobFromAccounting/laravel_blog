@@ -16,7 +16,7 @@ class EntrustSeeder extends Seeder {
         $blogger = new Role();
         $blogger->name         = 'blogger';
         $blogger->display_name = 'Persistent User Type';
-        $blogger->description  = 'User is allowed to make persistent posts to the database, can edit or delete their own posts.';
+        $blogger->description  = 'User is allowed to make persistent posts to the database, can edit their own posts.';
         $blogger->save();
 
         $guestBlogger = new Role();
@@ -93,6 +93,6 @@ class EntrustSeeder extends Seeder {
         $admin->attachPermissions(array($editPost, $destroyPost, $editUser, $editRoles));
         $blogger->attachPermissions(array($createPost, $editOwnPost, $editOwnUser));
         $guestBlogger->attachPermissions(array($createPostOnce, $editOwnPost, $editOwnUser));
-        $newUser->attachPermission($editOwnUser);
+        $newUser->attachPermissions(array($editOwnUser, $editOwnPost));
     }
 }
