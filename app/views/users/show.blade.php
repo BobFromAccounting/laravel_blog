@@ -32,6 +32,6 @@
         @if((Auth::check() && Auth::id() == $user->id) || (Auth::check() && Entrust::hasRole('admin')))
             <a class="btn btn-warning" href="{{{ action('UsersController@edit', $user->id) }}}">Edit User</a>
         @endif
-            <a class="btn btn-danger" href="">Reset Password</a>
+            <a class="btn btn-danger" href="{{{ action('AuthController@resetPassword') }}}">Reset Password</a>
     </div>
 @stop
