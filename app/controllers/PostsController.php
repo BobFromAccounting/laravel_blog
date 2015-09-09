@@ -4,11 +4,11 @@ class PostsController extends BaseController
 {
 
 	protected $entrustPerms = array(
-		'create'  => ['post-create-once', 'post-create'],
-		'store'   => ['post-create-once', 'post-create'],
-		'edit'    => ['post-edit-own',    'post-edit'],
-		'update'  => ['post-edit-own',    'post-edit'],
-		'destroy' => 'post-destroy',
+		'create'    => ['post-create-once', 'post-create'],
+		'store'     => ['post-create-once', 'post-create'],
+		'edit'      => ['post-edit-own',    'post-edit'],
+		'update'    => ['post-edit-own',    'post-edit'],
+		'destroy'   => 'post-destroy',
 	);
 	
 
@@ -17,6 +17,11 @@ class PostsController extends BaseController
 		parent::__construct();
 
 		$this->beforeFilter('auth', array('except' => array('index', 'show')));
+		$this->beforeFilter(function () {
+			if (!Entrust::hasRole('admin')) {
+				App::abort(404);
+			}
+		}, array('only' => array('getManage', 'getList')));
 	}
 
 	/**
@@ -138,9 +143,15 @@ class PostsController extends BaseController
 		$post = Post::findOrFail($id);		
 		$post->delete();
 
-		Session::flash('successMessage', 'This post has been successfully deleted.');
 
-		return Redirect::action('PostsController@index');
+        if (Request::wantsJson()) {
+            return Response::json(array('Status' => 'Request Succeeded'));
+        } else {
+			Session::flash('successMessage', 'This post has been successfully deleted.');
+
+            return Redirect::action('PostsController@index');
+        }
+
 	}
 
 	public function validateAndSave($post)
@@ -174,5 +185,17 @@ class PostsController extends BaseController
 
 			return Redirect::action('PostsController@show', array($post->id));
 		}
+	}
+
+	public function getManage() 
+	{	
+		return View::make('posts/manage');
+	}
+
+	public function getList()
+	{
+		$posts = Post::with('user')->get();
+
+		return Response::json($posts);
 	}
 }

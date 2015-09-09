@@ -28,6 +28,9 @@ Route::get('/portfolio/calculator', 'HomeController@showCalculator');
 Route::get('/portfolio/AdnormalGallery', 'HomeController@showAdnormalGallery');
 
 // Posts Routes
+Route::get('/posts/manage', 'PostsController@getManage');
+Route::get('/posts/list', 'PostsController@getList');
+
 Route::resource('/posts', 'PostsController');
 
 // Entrust Users Routes
