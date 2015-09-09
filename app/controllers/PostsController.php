@@ -181,9 +181,14 @@ class PostsController extends BaseController
 				Entrust::user()->detachRole($guest);
 			}
 
-			Session::flash('successMessage', 'Your post has been successfully saved.');
+			if (Request::wantsJson()) {
+				 return Response::json(array('Status' => 'Request Succeeded'));
+	        } else {
+				Session::flash('successMessage', 'Your post has been successfully saved.');
 
-			return Redirect::action('PostsController@show', array($post->id));
+				return Redirect::action('PostsController@show', array($post->id));
+			}
+
 		}
 	}
 

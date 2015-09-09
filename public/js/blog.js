@@ -15,6 +15,8 @@
     app.controller("ManageController", ["$http", "$log", "$scope", function($http, $log, $scope) {
         $scope.posts = [];
 
+        $scope.currentPost = {};
+
         $http.get('/posts/list').then(function (response) {
             $log.info("Post list success response");
 
@@ -24,6 +26,11 @@
 
             $log.debug(response);
         });
+
+        $scope.parseDate = function (string) {
+            var date = moment(string);
+            return date.format();
+        };
 
         $scope.deletePost = function (index) {
             var id = $scope.posts[index].id;
@@ -37,6 +44,30 @@
 
                 $log.debug(response);
             });
-        }
+        };
+
+        $scope.showModal = function (index) {
+            $scope.currentPost = $scope.posts[index];
+
+            $('#modal').modal();
+        };
+
+        $scope.editPost = function (editForm) {
+            var id = $scope.currentPost.id;
+
+            $http.put('/posts/' + id, {
+                "title": $scope.currentPost.title,
+                "body" : $scope.currentPost.body,
+            }).then(function (response) {
+                $log.info("Attempt to edit sent");
+
+                $('#modal').modal('hide');
+            }, function (response) {
+                $log.error("Attempt to edit failed");
+
+                $log.debug(response);
+            });
+        };
+
     }]);
 })();
