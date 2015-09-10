@@ -12,6 +12,19 @@
         $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
     }]);
 
+    app.filter('phpDate', function() {
+    
+    return function(input, format) {
+        var date = moment.tz(input.date, input.timezone);
+
+        if (format == "human") {
+            return date.fromNow();
+        } else {
+            return date.format(format);
+        }
+    };
+});
+
     app.controller("ManageController", ["$http", "$log", "$scope", function($http, $log, $scope) {
         $scope.posts = [];
 

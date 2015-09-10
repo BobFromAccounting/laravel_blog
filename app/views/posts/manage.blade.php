@@ -16,8 +16,11 @@
             <tr class="ng-cloak" ng-repeat="post in posts">
                 <td><a href="/posts/@{{ post.id }}">@{{ post.title }}</a></td>
                 <td>@{{ post.user.username }}</td>
-                <td>@{{ parseDate(post.created_at.date) | date:"longDate" }}</td>
-                <td><button class="btn btn-default btn-xs" ng-click="showModal($index)"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" ng-click="deletePost($index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                <td>@{{ post.created_at | phpDate : "MMMM Do, YYYY h:mm a" }}</td>
+                <td>
+                    <button class="btn btn-default btn-xs" ng-click="showModal($index)"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger btn-xs" ng-click="deletePost($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                </td>
             </tr>
         </table>
         <div class="modal fade" id="modal">
@@ -35,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="body">Blog Title</label>
-                                <textarea name="body" id="body" class="form-control" rows="8" required>@{{ currentPost.body }}</textarea>
+                                <textarea name="body" id="body" class="form-control" rows="8" ng-model="currentPost.body" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
@@ -47,7 +50,8 @@
 @stop
 
 @section('script')
+    <script type="text/javascript" src="/js/moment.js"></script>
+    <script type="text/javascript" src="/js/moment-timezone-2010-2020.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="/js/blog.js"></script>
-    <script type="text/javascript" src="/js/moment.js"></script>
 @stop
