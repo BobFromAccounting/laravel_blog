@@ -23,7 +23,7 @@
                 <div class="container">
                     <h1>Professional Philosophy:</h1>
                     <p>
-                        I am a self-motivated, and highly observant problem solver whose talent, introspection and love of learning creates a clear focus on problem resolution. I have many strengths, including: Logical Evalutation, Problem Solving, Analysis, Interpersonal Communication, and Innovative Collaboration.
+                        I am a self-motivated, and highly observant problem solver whose talent, introspection and love of learning creates a clear focus on problem resolution. I have many strengths, including: Logical Evaluation, Problem Solving, Analysis, Interpersonal Communication, and Innovative Collaboration.
                     </p>
                 </div>
             </div>
