@@ -28,7 +28,7 @@
                         Authored by: <a href="{{{ action('UsersController@show', $post->user_id) }}}">{{{ $post->user->username }}}</a>
                     </p>
                     <p>
-                        {{ $post->renderBody(20) }}
+                        {{ $post->renderBody(150) }}
                     </p>
                     <a class="btn btn-default" href="{{{ action('PostsController@show', $post->id) }}}">Read Post</a>
                 </div>
