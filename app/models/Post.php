@@ -20,12 +20,14 @@ class Post extends BaseModel {
         $config = HTMLPurifier_Config::createDefault();
         $purifier = new HTMLPurifier($config);
 
-        if (!is_null($characterLimit)) {
-            Str::words($this->body, $characterLimit);
-        }
         $body = $Parsedown->text($this->body);
-        
-        return $cleanBody = $purifier->purify($body);
+        $cleanBody = $purifier->purify($body);
+
+        if (!is_null($characterLimit)) {
+            return Str::words($cleanBody, $characterLimit);
+        }
+
+        return $cleanBody;
     }
 
     public function uploadImage($file)

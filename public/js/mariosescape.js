@@ -1,6 +1,6 @@
 "use strict";
 (function () {
-// variable dump :establishing the gameloop, highscore, click enabling, lives remaining,
+// variable dump :establishing the game loop, high score, click enabling, lives remaining,
 // interval timing, and cheat code comparisons.
 
 var gameLoop = false;
@@ -22,7 +22,7 @@ $('#play').click(function (e) {
 	gameLoopLogic();
 });
 
-// click event listener is listening for click events and running ingame logic to establish
+// click event listener is listening for click events and running in game logic to establish
 // scoring, interval setting changes, failure to match click the identified div, establishes
 // a win condition, and plays audio files for matching and failed matching click events.
 
@@ -47,13 +47,13 @@ $(".molehole").click(function (event) {
 	}
 
 	function restart () {
-			var tryAgain = confirm("Help Mario escape again?");
-			if (tryAgain) {
-				enableClicks = true;
-				gameLoop = true;
-				document.getElementById("theme").play();
-				gameLoopLogic();
-			}
+		var tryAgain = confirm("Help Mario escape again?");
+		if (tryAgain) {
+			enableClicks = true;
+			gameLoop = true;
+			document.getElementById("theme").play();
+			gameLoopLogic();
+		}
 	}
 	
 	if (enableClicks == true) {
@@ -67,7 +67,7 @@ $(".molehole").click(function (event) {
 			document.getElementById("miss").play();
 		}
 		if ((highscore % 100) == 0) {
-			document.getElementById("acheivement").play();
+			document.getElementById("achievement").play();
 		} 
 		if (highscore === 500) {
 			gameOver();
@@ -110,7 +110,7 @@ function gameLoopLogic () {
 	}
 }
 
-// animation functions for mario to appear and what happens when you miss him.
+// animation functions for Mario to appear and what happens when you miss him.
 
 function animateMario (id) {
 	$('#' + id).addClass('active');
@@ -141,7 +141,7 @@ $(document).keyup(function (e){
     if (keystrokes.toString().indexOf(konamiKeys) >= 0) {
     	livesRemaining = 30;
     	$("#lives").text("Lives: " + livesRemaining);
-		document.getElementById("acheivement").play();
+		document.getElementById("achievement").play();
     	keystrokes = [];
     }
 });

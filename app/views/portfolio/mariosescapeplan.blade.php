@@ -12,7 +12,7 @@
     </head>
     <body>
         <audio id="theme" src="/audio/theme.mp3" type="audio/mpeg"></audio>
-        <audio id="acheivement" src="/audio/powerup.wav" type="audio/wav"></audio>
+        <audio id="achievement" src="/audio/powerup.wav" type="audio/wav"></audio>
         <audio id="hit" src="/audio/pipe.wav" type="audio/wav"></audio>
         <audio id="miss" src="/audio/miss.wav" type="audio/wav"></audio>
         <audio id="death" src="/audio/death.wav" type="audio/wav"></audio>
