@@ -23,12 +23,12 @@
             <div class="square" id="blue"></div>
         </div>
         <div id="startbuttons">
-            <a class="btn btn-danger text" id="play" href="#" role="button">Play</a>
-            <a class="btn btn-danger text" id="advanced" href="#" role="button">Advanced</a>
-            <a class="btn btn-danger text" id="round" href="#" role="button">Round # 1</a>
+            <a class="btn btn-danger text" id="play" role="button">Play</a>
+            <a class="btn btn-danger text" id="advanced" role="button">Advanced</a>
+            <a class="btn btn-danger text" id="round" role="button">Round: 1</a>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="/js/simplesimon.js"></script>
+        <script src="/js/simplesimonOO.js"></script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

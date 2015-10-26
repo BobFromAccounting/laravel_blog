@@ -1,5 +1,5 @@
-"use strict";
 (function () {
+"use strict";
 // variable dump :establishing the game loop, high score, click enabling, lives remaining,
 // interval timing, and cheat code comparisons.
 
