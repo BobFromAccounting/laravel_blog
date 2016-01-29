@@ -97,13 +97,13 @@ function gameOver () {
 	highscore = 0;
 	enableClicks = false;
 	livesRemaining = 3;
-	interval = 1000;
+	interval = 750;
 	warning = false;
 	gameLoopLogic();	
 }
 
 function gameLoopLogic () {
-	if (gameLoop === true) {
+	if (gameLoop) {
 		isLooping = setInterval(marioTravels, interval);	
 	} else {
 		clearInterval(isLooping);

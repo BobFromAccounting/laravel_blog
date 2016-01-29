@@ -28,7 +28,9 @@ for (var i = 0; i < operators.length; i++) {
 }
 
 function operatorClick () {
-	document.getElementById("operator").value = this.innerHTML;
+	if (document.getElementById("initialdisplay").value != "") {
+		document.getElementById("operator").value = this.innerHTML;
+	}
 }
 
 // This is a clear function that resets the values of my inputs back to null.
