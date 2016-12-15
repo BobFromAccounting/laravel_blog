@@ -74,7 +74,7 @@
 	}
 
 	function playGameAudio () {
-			document.getElementById("inGameAudio").play();	
+			document.getElementById("inGameAudio").play();
 	}
 
 	$('#play').click(function (e) {
@@ -91,4 +91,4 @@
 		advancedPlay = true;
 		simonsTurn();
 	});
-})();
+}());

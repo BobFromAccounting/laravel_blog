@@ -78,9 +78,9 @@ var simon = {
         $('.square').click(function (e) {
             if (!simon.disableClicks) {
                 var squareClicked = $(this).attr('id');
-                
+
                 simon.animateSquare(squareClicked);
-                
+
                 if (squareClicked == simon.says[simon.userIndex]) {
                     simon.userIndex += 1;
                     if (simon.userIndex == simon.says.length) {

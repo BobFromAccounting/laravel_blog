@@ -5,53 +5,54 @@ body {
 	background-position: top right
 }
 #startbuttons {
-	transform: rotate(315deg);
-	margin-top: 440px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-	margin-left: 700px;
-	position: fixed;
+	width: 340px;
+	display: block;
+	margin: auto;
+	padding: inherit;
+}
+.play {
+	display: inline-flex;
 }
 .text {
 	color: black;
 	background-color: darkred;
+	font-weight: 800;
+	font-family: monospace;
+	font-size: 2em;
 }
 
 #gamebox {
-	width: 440px;
+	width: 340px;
 	height: 340px;
 	margin: auto;
-	position: absolute;		
-	top: 0; right: 0; bottom: 0; left: 0;
 	border-width: 1px;
 	border-color: blue;
-	-ms-transform: rotate(45deg); /* IE 9 */
-	-webkit-transform: rotate(45deg); /* Safari */
-	transform: rotate(45deg);
+	display: block;
 }
 .square {
 	width: 150px;
 	height: 150px;
 	border-width: 3px;
-	margin-top: 15px;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	margin-left: 10px;
-	float: left;
+	display: inline-flex;
 	opacity: 0.5;
 }
+
 #brown {
 	background-color: violet;
 }
+
 #red {
 	background-color: darkred;
 }
+
 #violet {
 	background-color: purple;
 }
+
 #blue {
 	background-color: darkblue;
 }
+
 .active {
 	opacity: 1.0;
 }
