@@ -115,3 +115,8 @@
         begin(Game(true));
     });
 }());
+$('p').text("I am the new text.");
+
+console.log($('li').last());
+
+console.log($('ul').last().children().last('li'));

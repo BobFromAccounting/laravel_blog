@@ -56,3 +56,11 @@ body {
 .active {
 	opacity: 1.0;
 }
+
+.yellow {
+	color: yellow;
+}
+
+.pink {
+	color: pink;
+}
